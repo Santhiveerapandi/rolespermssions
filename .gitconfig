@@ -1,0 +1,30 @@
+[alias]
+        acm = "!f() { git add . && git commit -m \"$(echo $@)\"; }; f";
+        com = checkout master
+        cob = checkout -b
+        b = branch
+
+        p = push
+        pl = pull
+
+        s = status
+
+        # Undo a `git push`
+         undopush = push -f origin HEAD^:master;
+
+        # Undo merge
+        undomerge = reset --hard HEAD@{1};
+
+        # Undo changes not commited
+        undo = reset --hard;
+
+        # Undo last commit and remove from stage
+        # Example
+        # git unstage file1 file2 ...
+        unstage = reset HEAD -- #file;
+[user]
+        name = K.Santhiveerapandi
+        email = santhiveerapandi@gmail.com
+        
+[core]
+        ignorecase = false
