@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Feature;
 
 use App\User;
@@ -34,25 +35,6 @@ class Http extends TestCase
                 'created' => true,
             ]);
     }
-
-    /**
-    * Cookies
-    * @group cookie
-    */
-    public function testCookies()
-    {
-        $response = $this->withCookie('color', 'blue')->get('/');
-        $response = $this->withCookies([
-            'color' => 'blue',
-            'name' => 'Taylor',
-        ])->get('/');
-    }
-
-
-    /**
-    * Debugging Responses
-    * @group response
-    */
     public function testBasicTest()
     {
         $response = $this->get('/');
@@ -60,72 +42,27 @@ class Http extends TestCase
         $response->dumpSession();
         $response->dump();
     }
-
     /**
-    * Session / Authentication
-    * @group session
+    * Cookies
+    * @group cookie
     */
-    public function testApplication()
-    {
-        $user = factory(User::class)->create();
-
-        $response = $this->actingAs($user)
-                         ->withSession(['foo' => 'bar'])
-                         ->get('/');
-
-        // $response = $this->withSession(['foo' => 'bar'])
-        //                  ->get('/');
-    }
-
-     /**
-     * Testing JSON APIs
-     * @group json
-     * @return void
-     */
-    public function testJson()
-    {
-        $response = $this->postJson('/user', ['name' => 'Sally']);
-
-        $response
-            ->assertStatus(201)
-            ->assertJson([
-                'created' => true,
-            ]);
-    }
+    
 
     /**
-     * Verifying An Exact JSON Match
-     * @group json
-     */
-    public function testExactJson()
-    {
-        $response = $this->json('POST', '/user', ['name' => 'Sally']);
-        $response
-            ->assertStatus(201)
-            ->assertExactJson([
-                'created' => true,
-            ]);
-    }
-
-    /**
-     * Verifying JSON Paths
-     * @group json
-     */
-    public function testJsonPath()
-    {
-        $response = $this->json('POST', '/user', ['name' => 'Sally']);
-
-        $response
-            ->assertStatus(201)
-            ->assertJsonPath('team.owner.name', 'foo')
-    }
-
+    * Debugging Responses
+    * @group response
+    */
+    
     /*
     *  Testing File Uploads
     *
     * @group upload
     */
-    public function testAvatarUpload()
+    
+}
+
+/*
+public function testAvatarUpload()
     {
         Storage::fake('avatars');
 
@@ -141,4 +78,62 @@ class Http extends TestCase
         // Assert a file does not exist...
         Storage::disk('avatars')->assertMissing('missing.jpg');
     }
-}
+public function testCookies()
+    {
+        $response = $this->withCookie('color', 'blue')->get('/');
+        $response = $this->withCookies([
+            'color' => 'blue',
+            'name' => 'Taylor',
+        ])->get('/');
+    }
+
+public function testBasicTest()
+    {
+        $response = $this->get('/');
+        $response->dumpHeaders();
+        $response->dumpSession();
+        $response->dump();
+    }
+
+
+    public function testApplication()
+    {
+        // $user = factory(User::class)->create();
+        // $response = $this->actingAs($user)
+        //                  ->withSession(['foo' => 'bar'])
+        //                  ->get('/');
+
+        // $response = $this->withSession(['foo' => 'bar'])
+        //                  ->get('/');
+    }
+
+    public function testJson()
+    {
+        $response = $this->postJson('/user', ['name' => 'Sally']);
+
+        $response
+            ->assertStatus(201)
+            ->assertJson([
+                'created' => true,
+            ]);
+    }
+
+    public function testExactJson()
+    {
+        $response = $this->json('POST', '/user', ['name' => 'Sally']);
+        $response
+            ->assertStatus(201)
+            ->assertExactJson([
+                'created' => true,
+            ]);
+    }
+    
+    public function testJsonPath()
+    {
+        $response = $this->json('POST', '/user', ['name' => 'Sally']);
+
+        $response
+            ->assertStatus(201)
+            ->assertJsonPath('team.owner.name', 'foo');
+    }
+*/

@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -51,7 +52,11 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name }}
+                                    @if(Auth::user()->avatar)
+                                    <img src={{asset('/storage/images/'.Auth::user()->avatar)}} width="40" />
+                                    @endif
+                                     <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -64,7 +69,12 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    <a class="dropdown-item" href="{{ route('todo.index') }}">{{ __('Todo List') }}</a>
+                                    <a class="dropdown-item" href="{{ route('admin.index') }}">{{ __('User List') }}</a>
                                 </div>
+                                <li class="nav-item">
+                                    
+                                </li>
                             </li>
                         @endguest
                     </ul>
@@ -76,5 +86,6 @@
             @yield('content')
         </main>
     </div>
+    @livewireScripts
 </body>
 </html>

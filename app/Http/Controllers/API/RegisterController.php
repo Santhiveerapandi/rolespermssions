@@ -28,10 +28,12 @@ class RegisterController extends BaseController
         if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors(), 201);
         }
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-        $success['token'] =  $user->createToken('MyApp')->accessToken;
-        $success['name'] =  $user->name;
+        // $input['password'] = bcrypt($input['password']);
+        // $input['api_token']   =   $user->createToken('MyApp')["accessToken"];
+        $user                   = User::create($input);
+        //$user->createToken('MyApp')->accessToken;
+        // $success['api_token']   =  $input['api_token'];
+        $success['name']        =  $user->name;
    
         return $this->sendResponse($success, 'User register successfully.');
     }

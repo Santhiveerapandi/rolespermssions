@@ -20,7 +20,13 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->text('api_token')->nullable();
+            $table->string('avatar', '255')->nullable();
+            $table->integer('role_id')->nullable();
             $table->timestamps();
+            $table->datetime('last_login_at')->nullable();
+            $table->string('last_login_ip')->nullable();
+ 
         });
     }
 
