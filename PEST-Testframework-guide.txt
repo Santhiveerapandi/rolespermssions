@@ -1,0 +1,13 @@
+ref:https://pestphp.com/docs/installation/
+1.phpunit.xml in the root of the project
+2.check and update following packages 
+3.composer require phpunit/phpunit:"^9.0" --dev --update-with-dependencies
+4.composer require nunomaduro/collision:"^5.0" --dev --update-with-dependencies
+5.composer require pestphp/pest --dev
+6.Now, it's time to setup your Pest test suite.
+    On Laravel, require the pest-plugin-laravel and run the pest:install Artisan command:
+    On laravel 
+    > composer require pestphp/pest-plugin-laravel --dev && php artisan pest:install
+    On other projects, run the pest --init command
+    > ./vendor/bin/pest --init
+
